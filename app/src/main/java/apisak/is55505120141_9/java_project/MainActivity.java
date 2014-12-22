@@ -3,8 +3,7 @@ package apisak.is55505120141_9.java_project;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.FragmentActivity
-;
+import android.support.v4.app.FragmentActivity;
 
 public class MainActivity extends FragmentActivity {
 
