@@ -1,10 +1,7 @@
 package apisak.is55505120141_9.java_project;
 
 import android.app.ActionBar;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -16,18 +13,18 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.cengalabs.flatui.FlatUI;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MainActivity extends ActionBarActivity implements OnMapReadyCallback {
     private final LatLng LOCATION_BURNABY = new LatLng(13.714123, 100.537749);
     private final LatLng LOCATION_SURREY = new LatLng(13.716317, 100.538264);
 
@@ -45,6 +42,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private final LatLng LOCATION_BP_BUILDING9 = new LatLng(13.717338, 100.536250);
 
     private GoogleMap map;
+//    private MapFragment mapFragment;
+
     private Spinner choose;
     private Button btnSearch;
 
@@ -52,20 +51,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        setContentView(R.layout.map_layout);
-
-        map = ((MapFragment) getFragmentManager(). findFragmentById(R.id.map)).getMap();
-        map.setMyLocationEnabled(true);
-
-//        MapFragment mMapFragment = MapFragment.newInstance();
-//        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//        fragmentTransaction.add(R.id.map, mMapFragment);
-//        fragmentTransaction.commit();
-
-//        MapFragment mapFragment = ((MapFragment) getFragmentManager()
-//                .findFragmentById(R.id.map)).getMap();
-//        mapFragment.getMapAsync(this);
-        
+        setFlatUI();
+        setMap();
         initWidget();
         addListITEM();
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +65,24 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+    }
+
+    private void setFlatUI(){
+        FlatUI.initDefaultValues(this);
+        FlatUI.setDefaultTheme(FlatUI.DEEP);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(FlatUI.getActionBarDrawable(this, FlatUI.DEEP, false));
+//        Button button;
+//        button.setBackground(FlatUI.DEEP);
+    }
+
+    private void setMap(){
+        map = ((MapFragment) getFragmentManager(). findFragmentById(R.id.map)).getMap();
+//        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+
+//        mapFragment.getMapAsync(MainActivity.this);
+        map.setMyLocationEnabled(true);
     }
 
     private void addListITEM() {
@@ -157,13 +162,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void onClick_myLocation(View view){
-//        public static final myLocation (Location location){
-//
-//        }
-//        LatLng myLocation = new LatLng()
-
         map.setMyLocationEnabled(true);
-
     }
 
     @Override
@@ -178,6 +177,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             .snippet("Thailand's popular")
             .position(bangkok));
 
-        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
     }
+
 }
