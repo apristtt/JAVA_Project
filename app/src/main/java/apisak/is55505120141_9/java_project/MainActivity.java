@@ -1,12 +1,9 @@
 package apisak.is55505120141_9.java_project;
 
-import android.app.ActionBar;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,18 +11,16 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.cengalabs.flatui.FlatUI;
-import com.cengalabs.flatui.views.FlatButton;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-public class MainActivity extends ActionBarActivity implements OnMapReadyCallback {
+public class MainActivity extends ActionBarActivity {
     private final LatLng LOCATION_BANGKOK = new LatLng(13.727896, 100.524123);
     private final LatLng LOCATION_BP_LAWN = new LatLng(13.716303, 100.538257);
     private final LatLng LOCATION_BP_BUILDING7 = new LatLng(13.716720, 100.538063);
@@ -41,11 +36,8 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     private final LatLng LOCATION_BP_BUILDING9 = new LatLng(13.717338, 100.536250);
 
     private GoogleMap map;
-//    private MapFragment mapFragment;
-
     private Spinner choose;
     private Button btnSearch;
-    public ArrayList<String> VenueList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +51,8 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int itemPos = choose.getSelectedItemPosition();
 
+                int itemPos = choose.getSelectedItemPosition();
                 if (itemPos == 0) {
                     Toast.makeText(getApplicationContext(),"Please choose venue.", Toast.LENGTH_LONG).show();
                 } else if (itemPos == 1) {
@@ -174,5 +166,4 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         return super.onOptionsItemSelected(item);
 
     }
-
 }
