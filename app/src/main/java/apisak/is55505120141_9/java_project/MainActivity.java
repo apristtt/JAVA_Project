@@ -26,9 +26,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity implements OnMapReadyCallback {
-    private final LatLng LOCATION_BURNABY = new LatLng(13.714123, 100.537749);
-    private final LatLng LOCATION_SURREY = new LatLng(13.716317, 100.538264);
-
+    private final LatLng LOCATION_BANGKOK = new LatLng(13.727896, 100.524123);
     private final LatLng LOCATION_BP_LAWN = new LatLng(13.716303, 100.538257);
     private final LatLng LOCATION_BP_BUILDING7 = new LatLng(13.716720, 100.538063);
     private final LatLng LOCATION_BP_BUILDING4 = new LatLng(13.717124, 100.537857);
@@ -55,6 +53,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
         setFlatUI();
         setMap();
+        setDefaultMapLocation();
         initWidget();
         addListITEM();
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +92,11 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
             }
         });
 
+    }
+
+    public void setDefaultMapLocation(){
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(LOCATION_BANGKOK, 10);
+        map.animateCamera(update);
     }
 
     public void setMarkerAndMoveCamera(String title, String snippet, LatLng position){
@@ -169,21 +173,6 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
         return super.onOptionsItemSelected(item);
 
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        LatLng bangkok = new LatLng(13.727896, 100.524123);
-
-//        map.setMyLocationEnabled(true);
-//        map.moveCamera(CameraUpdateFactory.newLatLngZoom(bangkok, 13));
-
-        map.addMarker(new MarkerOptions()
-            .title("Bangkok")
-            .snippet("Thailand's popular")
-            .position(bangkok));
-
-        map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
     }
 
 }
