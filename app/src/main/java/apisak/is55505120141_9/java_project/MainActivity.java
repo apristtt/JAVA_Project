@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.cengalabs.flatui.FlatUI;
+import com.cengalabs.flatui.views.FlatButton;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,6 +47,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
     private Spinner choose;
     private Button btnSearch;
+    public ArrayList<String> VenueList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +60,30 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        "You choose : " + String.valueOf(choose.getSelectedItem()),
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(
+//                        getApplicationContext(),
+//                        "You choose : " + String.valueOf(choose.getSelectedItem()) + "Position : " + String.valueOf(choose.getSelectedItemPosition()),
+//                        Toast.LENGTH_LONG).show();
+//                String itemPosition = String.valueOf(choose.getSelectedItemPosition());
+                int itemPos = choose.getSelectedItemPosition();
+
+                if(itemPos == 0){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Please choose venue.",Toast.LENGTH_LONG).show();
+                } else if (itemPos == 1){
+
+                    map.addMarker(new MarkerOptions()
+                        .title("Building 1")
+                        .snippet("Building 1 of Borpitpimuk Mahamek Campus")
+                        .position(LOCATION_BP_BUILDING1));
+
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_BP_BUILDING1, 18));
+
+                    CameraUpdate update = CameraUpdateFactory.newLatLng(LOCATION_BP_BUILDING1);
+                    map.animateCamera(update);
+                }
+
             }
         });
 
@@ -69,10 +91,13 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
     private void setFlatUI(){
         FlatUI.initDefaultValues(this);
-        FlatUI.setDefaultTheme(FlatUI.DEEP);
+        FlatUI.setDefaultTheme(FlatUI.GRASS);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(FlatUI.getActionBarDrawable(this, FlatUI.DEEP, false));
+        actionBar.setBackgroundDrawable(FlatUI.getActionBarDrawable(this, FlatUI.GRASS, false));
+
+//        FlatButton flatButton = (FlatButton) findViewById(R.id.btnUTK);
+//        flatButton.getAttributes().setTheme(FlatUI.GRASS, getResources());
 //        Button button;
 //        button.setBackground(FlatUI.DEEP);
     }
@@ -87,6 +112,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
     private void addListITEM() {
         ArrayList<String> VenueList = new ArrayList<String>();
+        VenueList.add("Choose...");
         VenueList.add("1th Building");
         VenueList.add("2th Building");
         VenueList.add("4th Building");
