@@ -60,29 +60,11 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(
-//                        getApplicationContext(),
-//                        "You choose : " + String.valueOf(choose.getSelectedItem()) + "Position : " + String.valueOf(choose.getSelectedItemPosition()),
-//                        Toast.LENGTH_LONG).show();
-//                String itemPosition = String.valueOf(choose.getSelectedItemPosition());
                 int itemPos = choose.getSelectedItemPosition();
 
                 if (itemPos == 0) {
-                    Toast.makeText(
-                            getApplicationContext(),
-                            "Please choose venue.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Please choose venue.", Toast.LENGTH_LONG).show();
                 } else if (itemPos == 1) {
-
-//                    map.addMarker(new MarkerOptions()
-//                        .title("Building 1")
-//                        .snippet("Building 1 of Borpitpimuk Mahamek Campus")
-//                        .position(LOCATION_BP_BUILDING1));
-//
-//                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_BP_BUILDING1, 18));
-//
-//                    CameraUpdate update = CameraUpdateFactory.newLatLng(LOCATION_BP_BUILDING1);
-//                    map.animateCamera(update);
-
                     setMarkerAndMoveCamera("Building 1", "Building 1 of Borpitpimuk Mahamek Campus", LOCATION_BP_BUILDING1);
                 } else if (itemPos == 2) {
                     setMarkerAndMoveCamera("Building 2", "Building 2 of Borpitpimuk Mahamek Campus", LOCATION_BP_BUILDING2);
@@ -114,6 +96,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     }
 
     public void setMarkerAndMoveCamera(String title, String snippet, LatLng position){
+        map.clear();
         map.addMarker(new MarkerOptions()
                 .title(title)
                 .snippet(snippet)
@@ -135,17 +118,14 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
     private void setMap(){
         map = ((MapFragment) getFragmentManager(). findFragmentById(R.id.map)).getMap();
-//        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-
-//        mapFragment.getMapAsync(MainActivity.this);
         map.setMyLocationEnabled(true);
     }
 
     private void addListITEM() {
         ArrayList<String> VenueList = new ArrayList<String>();
         VenueList.add("Choose...");
-        VenueList.add("1th Building");
-        VenueList.add("2th Building");
+        VenueList.add("1st Building");
+        VenueList.add("2nd Building");
         VenueList.add("4th Building");
         VenueList.add("5th Building");
         VenueList.add("7th Building");
@@ -194,14 +174,6 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     public void onClick_City(View view){
         CameraUpdate update = CameraUpdateFactory.newLatLng(LOCATION_BURNABY);
         map.animateCamera(update);
-    }
-
-    public void onClick_Surrey(View view){
-        Context context = getApplicationContext();
-        CharSequence text = "Hello Surrey";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
     }
 
     public void onClick_UTK(View view){
