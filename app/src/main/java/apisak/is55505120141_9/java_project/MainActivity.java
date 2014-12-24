@@ -67,25 +67,60 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 //                String itemPosition = String.valueOf(choose.getSelectedItemPosition());
                 int itemPos = choose.getSelectedItemPosition();
 
-                if(itemPos == 0){
+                if (itemPos == 0) {
                     Toast.makeText(
                             getApplicationContext(),
-                            "Please choose venue.",Toast.LENGTH_LONG).show();
-                } else if (itemPos == 1){
+                            "Please choose venue.", Toast.LENGTH_LONG).show();
+                } else if (itemPos == 1) {
 
-                    map.addMarker(new MarkerOptions()
-                        .title("Building 1")
-                        .snippet("Building 1 of Borpitpimuk Mahamek Campus")
-                        .position(LOCATION_BP_BUILDING1));
+//                    map.addMarker(new MarkerOptions()
+//                        .title("Building 1")
+//                        .snippet("Building 1 of Borpitpimuk Mahamek Campus")
+//                        .position(LOCATION_BP_BUILDING1));
+//
+//                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_BP_BUILDING1, 18));
+//
+//                    CameraUpdate update = CameraUpdateFactory.newLatLng(LOCATION_BP_BUILDING1);
+//                    map.animateCamera(update);
 
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_BP_BUILDING1, 18));
-
-                    CameraUpdate update = CameraUpdateFactory.newLatLng(LOCATION_BP_BUILDING1);
-                    map.animateCamera(update);
+                    setMarkerAndMoveCamera("Building 1", "Building 1 of Borpitpimuk Mahamek Campus", LOCATION_BP_BUILDING1);
+                } else if (itemPos == 2) {
+                    setMarkerAndMoveCamera("Building 2", "Building 2 of Borpitpimuk Mahamek Campus", LOCATION_BP_BUILDING2);
+                } else if (itemPos == 3) {
+                    setMarkerAndMoveCamera("Building 4", "Building 4 of Borpitpimuk Mahamek Campus", LOCATION_BP_BUILDING4);
+                } else if (itemPos == 4) {
+                    setMarkerAndMoveCamera("Building 5", "Building 5 of Borpitpimuk Mahamek Campus", LOCATION_BP_BUILDING5);
+                } else if (itemPos == 5) {
+                    setMarkerAndMoveCamera("Building 7", "Building 7 of Borpitpimuk Mahamek Campus", LOCATION_BP_BUILDING7);
+                } else if (itemPos == 6) {
+                    setMarkerAndMoveCamera("Building 9", "Building 9 of Borpitpimuk Mahamek Campus", LOCATION_BP_BUILDING9);
+                } else if (itemPos == 7) {
+                    setMarkerAndMoveCamera("Lawn", "Lawn of Borpitpimuk Mahamek Campus", LOCATION_BP_LAWN);
+                } else if (itemPos == 8) {
+                    setMarkerAndMoveCamera("Football", "Football of Borpitpimuk Mahamek Campus", LOCATION_BP_FOOTBALL);
+                } else if (itemPos == 9) {
+                    setMarkerAndMoveCamera("Tennis", "Tennis of Borpitpimuk Mahamek Campus", LOCATION_BP_TENNIS);
+                } else if (itemPos == 10) {
+                    setMarkerAndMoveCamera("Canteen", "Canteen of Borpitpimuk Mahamek Campus", LOCATION_BP_CANTEEN);
+                } else if (itemPos == 11) {
+                    setMarkerAndMoveCamera("Medical Room", "Mediacal Room of Borpitpimuk Mahamek Campus", LOCATION_BP_MEDICALROOM);
+                } else if (itemPos == 12) {
+                    setMarkerAndMoveCamera("UTK by 7-11", "UTK by 7-11 of Borpitpimuk Mahamek Campus", LOCATION_BP_UTKSEVENELEVEN);
                 }
 
             }
         });
+
+    }
+
+    public void setMarkerAndMoveCamera(String title, String snippet, LatLng position){
+        map.addMarker(new MarkerOptions()
+                .title(title)
+                .snippet(snippet)
+                .position(position));
+
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(position, 18);
+        map.animateCamera(update);
 
     }
 
@@ -96,10 +131,6 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(FlatUI.getActionBarDrawable(this, FlatUI.GRASS, false));
 
-//        FlatButton flatButton = (FlatButton) findViewById(R.id.btnUTK);
-//        flatButton.getAttributes().setTheme(FlatUI.GRASS, getResources());
-//        Button button;
-//        button.setBackground(FlatUI.DEEP);
     }
 
     private void setMap(){
