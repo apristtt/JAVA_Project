@@ -171,29 +171,6 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
     }
 
-    public void onClick_City(View view){
-        CameraUpdate update = CameraUpdateFactory.newLatLng(LOCATION_BURNABY);
-        map.animateCamera(update);
-    }
-
-    public void onClick_UTK(View view){
-        LatLng utk = new LatLng(13.7141162, 100.5384555);
-
-        map.addMarker(new MarkerOptions()
-                .title("UTK")
-                .snippet("University")
-                .position(utk));
-
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(utk, 18));
-
-        CameraUpdate utkUpdate = CameraUpdateFactory.newLatLng(utk);
-        map.animateCamera(utkUpdate);
-    }
-
-    public void onClick_myLocation(View view){
-        map.setMyLocationEnabled(true);
-    }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         LatLng bangkok = new LatLng(13.727896, 100.524123);
