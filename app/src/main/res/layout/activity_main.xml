@@ -27,25 +27,6 @@
             android:id="@+id/btnSearch" />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="City"
-        android:id="@+id/btnCity"
-        android:onClick="onClick_City"
-        android:layout_alignBottom="@+id/map"
-        android:visibility="invisible" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UTK"
-        android:id="@+id/btnUTK"
-        android:onClick="onClick_UTK"
-        android:layout_alignEnd="@+id/map"
-        android:layout_marginTop="59dp"
-        android:layout_alignTop="@+id/map" />
-
     <fragment
         android:name="com.google.android.gms.maps.MapFragment"
         android:id="@+id/map"
